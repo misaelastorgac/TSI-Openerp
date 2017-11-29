@@ -1,1 +1,1 @@
-# TSI-Openerp
+# Proyecto IdiomasUPO en OpenERP
