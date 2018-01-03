@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="persona_alumno_form" model="ir.ui.view">
+			<field name="name">alumno.form</field>
+			<field name="model">alumno</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Alumnos">
+					<field name="photo" widget='image' />
+					<group col="5" colspan="5">
+						<group col="4" colspan="4">
+							<field name="name" />
+							<field name="lastname" />
+							<field name="DNI" />
+							<field name="phone" />
+							<field name="address" />
+							<field name="email" />
+							<field name="cobro" />
+						</group>
+						<notebook colspan="5">
+							<page string="Cursos">
+								<field name="curso_ids" />
+							</page>
+							<page string="Calificaciones">
+								<field name="calificaciones_ids" />
+							</page>
+							<page string="Pago deMatricula">
+								<field name="pagomatricula_ids" />
+							</page>
+
+						</notebook>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="persona_alumno_tree" model="ir.ui.view">
+			<field name="name">alumno.form</field>
+			<field name="model">alumno</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Alumnos">
+					<field name="photo" widget='image' />
+					<field name="name" />
+					<field name="lastname" />
+					<field name="DNI" />
+					<field name="phone" />
+					<field name="address" />
+					<field name="email" />
+					<field name="cobro" />
+					<field name="curso_ids" />
+					<field name="calificaciones_ids" />
+					<field name="pagomatricula_ids" />
+				</tree>
+			</field>
+		</record>
+		
+		
+		<record model="ir.ui.view" id="view_manage_alumno_search">
+			<field name="name">view_manage_alumno_search</field>
+			<field name="model">alumno</field>
+			<field name="arch" type="xml">
+				<search string="Filtros">
+					<field name="DNI" string="DNI" filter_domain="[('DNI','ilike',self)]" />
+					<field name="curso_ids" string="Cursos" filter_domain="[('curso_ids','ilike',self)]" />
+				</search>
+			</field>
+		</record>
+
+
+
+
+		<record id="action_persona_alumno" model="ir.actions.act_window">
+			<field name='name'>Ver Alumnos</field>
+			<field name='res_model'>alumno</field>
+			<field name='view_type'>form</field>
+			<field name='view_mode'>tree,form</field>
+			<field name="search_view_id" ref="view_manage_alumno_search" />
+		</record>
+		<menuitem id="Idiomas" name="Idiomas" action="action_persona_alumno" />
+		<menuitem id="Alumnos" name="Alumnos" parent="Idiomas"></menuitem>
+		<menuitem action="action_persona_alumno" id="Alumnos2"
+			parent="Alumnos" />
+	</data>
+</openerp>

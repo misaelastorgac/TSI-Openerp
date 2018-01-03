@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="equipamiento_form" model="ir.ui.view">
+			<field name="name">equipamiento_form</field>
+			<field name="model">equipamiento</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Equipamiento">
+					<field name="codigo" />
+					<group col="5" colspan="5">
+						<group col="4" colspan="4">
+
+							<field name="tipo" />
+							<field name="descripcion" />
+							<field name="fecha_compra" />
+
+						</group>
+						<notebook colspan="5">
+							<page string="Equipamiento">
+								<field name="aula_ids" />
+							</page>
+						</notebook>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="equipamiento_tree" model="ir.ui.view">
+			<field name="name">equipamiento_tree</field>
+			<field name="model">equipamiento</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Equipamiento">
+
+					<field name="codigo" />
+					<field name="tipo" />
+					<field name="descripcion" />
+					<field name="fecha_compra" />
+					<field name="aula_ids" />
+				</tree>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="view_manage_equipamiento_calendar">
+			<field name="name">view_manage_equipamiento_calendar</field>
+			<field name="model">equipamiento</field>
+			<field name="type">calendar</field>
+			<field name="arch" type="xml">
+			<calendar string="Fechas" color="codigo" date_start="fecha_compra" >
+				<field name="tipo" />
+			</calendar>
+			</field>
+		</record>
+		
+
+<record model="ir.ui.view" id="view_manage_equipamiento_search">
+			<field name="name">view_manage_equipamiento_search</field>
+			<field name="model">equipamiento</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Filtros">
+					<filter name="equipamiento_aula" string="Equipamiento por aula" icon="terp-accessories-archiver"
+						domain="[]" context="{'group_by': 'aula_ids'}" />
+					<separator orientation="horizontal" />
+					
+					
+				</search>
+			</field>
+		</record>
+		
+
+		<record id="act_equipamiento" model="ir.actions.act_window">
+			<field name='name'>Ver Equipamiento</field>
+			<field name='res_model'>equipamiento</field>
+			<field name='view_type'>form</field>
+			<field name='view_mode'>tree,form,calendar</field>
+			<field name="search_view_id" ref="view_manage_aula_search" />
+		</record>
+
+		<menuitem id="Equipamiento" name="Equipamiento" parent="Idiomas"></menuitem>
+		<menuitem action="act_equipamiento" id="Equipamiento2"
+			parent="Equipamiento" />
+	</data>
+</openerp>

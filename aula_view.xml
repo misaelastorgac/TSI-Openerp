@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="aula_form" model="ir.ui.view">
+			<field name="name">aula_form</field>
+			<field name="model">aula</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Aulas">
+					<field name="codigo" />
+					<group col="5" colspan="5">
+						<group col="4" colspan="4">
+							<field name="edificio" />
+							<field name="planta" />
+							<field name="aula" />
+							<field name="capacidad" />
+							<field name="tipo" />
+
+						</group>
+						<notebook colspan="5">
+							<page string="Cursos">
+								<field name="curso_ids" />
+							</page>
+							<page string="Equipamiento">
+								<field name="equipamiento_ids" />
+							</page>
+						</notebook>
+					</group>
+
+
+				</form>
+			</field>
+		</record>
+
+		<record id="aula_tree" model="ir.ui.view">
+			<field name="name">aula_tree</field>
+			<field name="model">aula</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Aulas">
+					<field name="codigo" />
+					<field name="edificio" />
+					<field name="planta" />
+					<field name="aula" />
+					<field name="capacidad" />
+					<field name="tipo" />
+					<field name="curso_ids" />
+					<field name="equipamiento_ids" />
+
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_manage_aula_search">
+			<field name="name">view_manage_aula_search</field>
+			<field name="model">aula</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Tipo">
+					<filter string="Tipo" icon="terp-accessories-archiver"
+						domain="[]" context="{'group_by': 'tipo'}" />
+					<separator orientation="horizontal" />
+					<field name="tipo" />
+				</search>
+			</field>
+		</record>
+		
+		
+		
+		<record model="ir.ui.view" id="view_manage_capacidad_graph">
+			<field name="name">view_manage_capacidad_graph</field>
+			<field name="model">aula</field>
+			<field name="type">graph</field>
+			<field name="arch" type="xml">
+				<graph string="Capacidad aulas" orientation="horizontal">
+					<field name="codigo" />
+					<field name="capacidad" />
+				</graph>
+			</field>
+		</record>
+		
+<!-- 		<record model="ir.ui.view" id="view_manage_capacidadtipo_graph"> -->
+<!-- 			<field name="name">view_manage_capacidadtipo_graph</field> -->
+<!-- 			<field name="model">aula</field> -->
+<!-- 			<field name="type">graph</field> -->
+<!-- 			<field name="arch" type="xml"> -->
+<!-- 				<graph string="Capacidadtipo aulas" orientation="horizontal"> -->
+<!-- 					<field name="tipo" /> -->
+<!-- 					<field name="capacidad" /> -->
+<!-- 				</graph> -->
+<!-- 			</field> -->
+<!-- 		</record> -->
+		
+		
+		<record model="ir.ui.view" id="view_manage_aula_search">
+			<field name="name">view_manage_aula_search</field>
+			<field name="model">aula</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Filtros">
+					<filter name="Tipo" string="Tipo de aula" icon="terp-accessories-archiver"
+						domain="[]" context="{'group_by': 'tipo'}" />
+					<separator orientation="horizontal" />
+					<filter name="Capacidad" string="Capacidad mayor a 30 personas" domain="[('capacidad','&gt;',30)]" icon="terp-accessories-archiver"/>
+					<filter name="Capacidad" string="Capacidad menor o igual a 30 personas" domain="[('capacidad','&lt;=',30)]" icon="terp-accessories-archiver"/>
+					<separator orientation="vertical" />
+					
+				</search>
+			</field>
+		</record>
+		
+		
+
+		<record id="act_aulas" model="ir.actions.act_window">
+			<field name='name'>Ver Aulas</field>
+			<field name='res_model'>aula</field>
+			<field name='view_type'>form</field>
+			<field name='view_mode'>tree,form,graph</field>
+			<field name="search_view_id" ref="view_manage_aula_search" />
+		</record>
+
+		<menuitem id="Aulas" name="Aulas" parent="Idiomas"></menuitem>
+		<menuitem action="act_aulas" id="Aulas2" parent="Aulas" />
+	</data>
+</openerp>

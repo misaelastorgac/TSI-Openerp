@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="persona_persona_form" model="ir.ui.view">
+			<field name="name">persona.form</field>
+			<field name="model">persona</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml"> 
+				<form string="Personas">
+					<field name="photo" />
+					<field name="name" />
+					<field name="lastname" />
+					<field name="DNI" />
+					<field name="phone" />
+					<field name="address" />
+					<field name="email" />
+				</form>
+			</field>
+		</record>
+		<record id="action_persona_persona" model="ir.actions.act_window">
+			<field name='name'>Persona</field>
+			<field name='res_model'>persona</field>
+			<field name='view_type'>form</field>
+			<field name='view_mode'>tree,form</field>
+		</record>
+		
+	<!--  	<menuitem id="Idiomas" name="Idiomas" action="action_persona_persona" />
+		<menuitem id="Personas" name="Personas" parent="Idiomas"></menuitem>
+		<menuitem action="action_persona_persona" id="Persona"
+			parent="Personas" />  -->
+			
+	</data>
+</openerp>

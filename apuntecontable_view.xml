@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="apuntecontable_form" model="ir.ui.view">
+			<field name="name">apuntecontable.form</field>
+			<field name="model">apuntecontable</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Apunte Contable">
+					<group col="5" colspan="5">
+						<group col="4" colspan="4">
+							<field name="importe" />
+							<field name="estado" />
+							<field name="asunto" />
+							<field name="fechavencimiento" />
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="apuntecontable_tree" model="ir.ui.view">
+			<field name="name">apuntecontable.tree</field>
+			<field name="model">apuntecontable</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Apunte Contable">
+					<field name="importe" />
+					<field name="estado" />
+					<field name="asunto" />
+					<field name="fechavencimiento" />
+				</tree>
+			</field>
+		</record>
+
+
+
+
+
+		<record model="ir.ui.view" id="view_manage_apuntecontable_search">
+			<field name="name">view_manage_apuntecontable_search</field>
+			<field name="model">apuntecontable</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Estado">
+					<filter string="Estado" icon="terp-accessories-archiver"
+						domain="[('estado')]" context="{'group_by': ['estado']}" />
+					<separator orientation="vertical" />
+					<field name="estado" />
+				</search>
+			</field>
+		</record>
+
+
+		<record id="action_apuntecontable" model="ir.actions.act_window">
+			<field name='name'>Ver Apuntes Contables</field>
+			<field name='res_model'>apuntecontable</field>
+			<field name='view_type'>form</field>
+			<field name='view_mode'>tree,form</field>
+			<field name="search_view_id" ref="view_manage_apuntecontable_search" />
+		</record>
+
+	<!--  	<menuitem id="Apuntecontable" name="Apunte Contable" parent="Idiomas"></menuitem>
+		<menuitem action="action_apuntecontable" id="Apuntecontable2"
+			parent="Apuntecontable" /> -->
+	</data>
+</openerp>

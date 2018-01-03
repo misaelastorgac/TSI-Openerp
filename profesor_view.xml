@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="persona_profesor_form" model="ir.ui.view">
+			<field name="name">profesor.form</field>
+			<field name="model">profesor</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Profesores">
+					<field name="photo" widget='image' />
+					<group col="5" colspan="5">
+						<group col="4" colspan="4">
+							<field name="name" />
+							<field name="lastname" />
+							<field name="DNI" />
+							<field name="phone" />
+							<field name="address" />
+							<field name="email" />
+							<field name="pago" />
+							<field name="despacho" />
+							<field name="cargo" />
+						</group>
+						<notebook colspan="5">
+							<page string="Cursos">
+								<field name="curso_ids" />
+							</page>
+							<page string="Cobro Sueldo">
+								<field name="cobrosueldo_ids" />
+							</page>
+						</notebook>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="persona_profesor_tree" model="ir.ui.view">
+			<field name="name">profesor.tree</field>
+			<field name="model">profesor</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Profesores">
+					<field name="photo" widget='image' />
+					<field name="name" />
+					<field name="lastname" />
+					<field name="DNI" />
+					<field name="phone" />
+					<field name="address" />
+					<field name="email" />
+					<field name="pago" />
+					<field name="despacho" />
+					<field name="cargo" />
+					<field name="curso_ids" />
+					<field name="cobrosueldo_ids" />
+	
+				</tree>
+			</field>
+		</record>
+		
+			<record model="ir.ui.view" id="view_manage_profesor_search">
+			<field name="name">view_manage_profesor_search</field>
+			<field name="model">profesor</field>
+			<field name="arch" type="xml">
+				<search string="Filtros">
+					<field name="DNI" string="DNI" filter_domain="[('DNI','ilike',self)]" />
+					<field name="cargo" string="Cargo" filter_domain="[('cargo','ilike',self)]" />
+				</search>
+			</field>
+		</record>
+
+
+		<record id="action_persona_profesor" model="ir.actions.act_window">
+			<field name='name'>Ver Profesores</field>
+			<field name='res_model'>profesor</field>
+			<field name='view_type'>form</field>
+			<field name='view_mode'>tree,form</field>
+			<field name="search_view_id" ref="view_manage_profesor_search" />
+		</record>
+
+		<menuitem id="Profesores" name="Profesores" parent="Idiomas"></menuitem>
+		<menuitem action="action_persona_profesor" id="Profesores2"
+			parent="Profesores" />
+	</data>
+</openerp>

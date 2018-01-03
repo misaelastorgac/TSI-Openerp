@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="calificaciones_form" model="ir.ui.view">
+			<field name="name">calificaciones.form</field>
+			<field name="model">calificaciones</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Calificaciones">
+					<group col="5" colspan="5">
+						<group col="4" colspan="4">
+							<field name="nota" />
+							<field name="tipoexamen" />
+						</group>
+						<notebook colspan="5">
+							<page string="Cursos">
+								<field name="curso_ids" />
+							</page>
+						</notebook>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="calificaciones_tree" model="ir.ui.view">
+			<field name="name">calificaciones.tree</field>
+			<field name="model">calificaciones</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Calificaciones">
+					<field name="nota" />
+					<field name="tipoexamen" />
+					<field name="curso_ids" />
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_manage_calificaciones_search">
+			<field name="name">view_manage_calificaciones_search</field>
+			<field name="model">calificaciones</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Nota">
+					<filter string="Nota" icon="terp-accessories-archiver"
+						domain="[('nota')]" context="{'group_by': ['nota']}" />
+					<separator orientation="vertical" />
+					<field name="nota" />
+				</search>
+			</field>
+		</record>
+
+
+		<record model="ir.ui.view" id="view_manage_calificaciones_graph">
+			<field name="name">view_manage_calificaciones_graph</field>
+			<field name="model">calificaciones</field>
+			<field name="type">graph</field>
+			<field name="arch" type="xml">
+				<graph string="Suma de calificaciones por Alumno" type="bar">
+					<field name="alumno_ids" type="row" />
+					<field name="nota" type="measure" />
+				</graph>
+			</field>
+		</record>
+
+
+
+
+
+		<record id="action_calificaciones" model="ir.actions.act_window">
+			<field name='name'>Ver Calificaciones</field>
+			<field name='res_model'>calificaciones</field>
+			<field name='view_type'>form</field>
+			<field name='view_mode'>tree,form,graph</field>
+			<field name="search_view_id" ref="view_manage_calificaciones_search" />
+		</record>
+
+		<menuitem id="Calificaciones" name="Calificaciones" parent="Idiomas"></menuitem>
+		<menuitem action="action_calificaciones" id="Calificaciones2"
+			parent="Calificaciones" />
+	</data>
+</openerp>

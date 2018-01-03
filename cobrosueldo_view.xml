@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="cobrosueldo_form" model="ir.ui.view">
+			<field name="name">cobrosueldo.form</field>
+			<field name="model">cobrosueldo</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Cobro de Sueldo">
+					<group col="5" colspan="5">
+						<group col="4" colspan="4">
+							<field name="importe" />
+							<field name="estado" />
+							<field name="asunto" />
+							<field name="fechavencimiento" />
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="cobrosueldo_tree" model="ir.ui.view">
+			<field name="name">cobrosueldo.tree</field>
+			<field name="model">cobrosueldo</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Apunte Contable">
+					<field name="importe" />
+					<field name="estado" />
+					<field name="asunto" />
+					<field name="fechavencimiento" />
+				</tree>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="view_manage_cobrosueldo_graph">
+			<field name="name">view_manage_cobrosueldo_graph</field>
+			<field name="model">cobrosueldo</field>
+			<field name="type">graph</field>
+			<field name="arch" type="xml">
+				<graph string="Suma de sueldo por profesor" type="bar">
+					<field name="profesor_ids" type="row" />
+					<field name="importe" type="measure" />
+				</graph>
+			</field>
+		</record>
+
+
+
+
+
+		<record model="ir.ui.view" id="view_manage_cobrosueldo_search">
+			<field name="name">view_manage_pagomatricula_search</field>
+			<field name="model">cobrosueldo</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Estado">
+					<filter string="Estado" icon="terp-accessories-archiver"
+						domain="[('estado')]" context="{'group_by': ['estado']}" />
+					<separator orientation="vertical" />
+					<field name="estado" />
+				</search>
+			</field>
+		</record>
+
+
+		<record id="action_cobrosueldo" model="ir.actions.act_window">
+			<field name='name'>Ver Estado de Sueldos</field>
+			<field name='res_model'>cobrosueldo</field>
+			<field name='view_type'>form</field>
+			<field name='view_mode'>tree,form,graph</field>
+			<field name="search_view_id" ref="view_manage_apuntecontable_search" />
+		</record>
+
+	 	<menuitem id="Cobrosueldo" name="Cobro de Sueldos" parent="Idiomas"></menuitem>
+		<menuitem action="action_cobrosueldo" id="cobrosueldo2"
+			parent="Cobrosueldo" /> -->
+	</data>
+</openerp>

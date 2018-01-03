@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="horario_form" model="ir.ui.view">
+			<field name="name">horario.form</field>
+			<field name="model">horario</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Horario">
+					<group col="4" colspan="4">
+						<field name="codigo" />
+						<field name="dias" />
+						<field name="hora_inicio" />
+						<field name="hora_fin" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="horario_tree" model="ir.ui.view">
+			<field name="name">horario.form</field>
+			<field name="model">horario</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Horario">
+					<field name="codigo" />
+					<field name="dias" />
+					<field name="hora_inicio" />
+					<field name="hora_fin" />
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="resource_kanban_view">
+			<field name="name">horario</field>
+			<field name="model">horario</field>
+			<field name="type">kanban</field>
+			<field name="arch" type="xml">
+				<kanban>
+					<templates>
+						<t t-name="kanban-box">
+							<div class="oe_resource_vignette">
+								<div class="oe_resource_image">
+									<a type="edit">
+										<img t-att-src="kanban_image('object.name', 'photo', record.id.value)"
+											class="oe_resource_picture" />
+									</a>
+								</div>
+								<div class="oe_resource_details">
+									<ul>
+										<!--Here u have to write the ur objects field name which u wnt 
+											to display in kanban view -->
+										<li>
+											<field name="codigo" />
+										</li>
+										<li>
+											<field name="dias" />
+										</li>
+										<li>
+											<field name="hora_inicio" />
+										</li>
+										<li>
+											<field name="hora_fin" />
+										</li>
+									</ul>
+								</div>
+							</div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+
+
+
+
+
+
+
+
+		<record model="ir.ui.view" id="view_manage_horario_calendar">
+			<field name="name">view_manage_horario_calendar</field>
+			<field name="model">horario</field>
+			<field name="type">calendar</field>
+			<field name="arch" type="xml">
+				<calendar string="Horario" color="codigo" date_start="hora_inicio"
+					date_stop="hora_fin">
+					<field name="codigo" />
+				</calendar>
+			</field>
+		</record>
+
+
+
+		<record id="action_horario" model="ir.actions.act_window">
+			<field name='name'>Ver Horario</field>
+			<field name='res_model'>horario</field>
+			<field name='view_type'>form</field>
+			<field name='view_mode'>tree,form,calendar,kanban</field>
+			<field name="calendar_view_id" ref="view_manage_horario_calendar" />
+		</record>
+
+
+		<menuitem id="Horarios" name="Horarios" parent="Idiomas"></menuitem>
+		<menuitem action="action_horario" id="Horario" parent="Horarios"></menuitem>
+
+	</data>
+</openerp>
